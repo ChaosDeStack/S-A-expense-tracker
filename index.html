@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Expense Tracker</h1>
+
+        <!--Loading / error messages-->
+        <p id="status" role="status"></p>
+
+        <!--Home currency selector-->
+        <section>
+            <label for="home-currency">Home Currency</label>
+            <select id="home-currency">
+                <option value="KES" selected>KES</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+            </select>
+        </section>
+
+        <!--Add expense form-->
+        <section>
+            <h2>Add Expense</h2>
+            <form id="expense-form">
+                <input type="text" id="description" placeholder="Description" required/>
+                <input type="number" id="amount" placeholder="Amount" min="0" step="0.01" required/>
+
+                <select id="currency" required>
+                    <option value="KES" selected>KES</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                </select>
+
+                <select id="category">
+                    <option value="Food">Food</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Utilities">Utilities</option>
+                </select>
+                <button type="submit">Add Expense</button>
+            </form>
+        </section>    
+</body>
+</html>
