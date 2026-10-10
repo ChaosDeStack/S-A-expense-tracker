@@ -1,0 +1,165 @@
+/* =====================================================
+   EXPENSE TRACKER - style.css
+   Each block below says what it styles and why.
+   Change any value and refresh the browser to see it.
+   ===================================================== */
+
+
+/* ---------- 1. COLOURS (DARK THEME - change the look in one place) ----------
+   ":root" means the whole page. Names starting with "--" are
+   variables. Later we use them with var(--name). */
+:root {
+  --page-background: #0f1514;   /* very dark green-black behind everything */
+  --box-background: #18221f;    /* slightly lighter dark for inputs and the list */
+  --text-color: #e8efec;        /* near-white text, easy to read on dark */
+  --soft-text: #9fb0ab;         /* softer grey for labels */
+  --accent: #2dd4bf;            /* bright teal used for buttons and highlights */
+  --button-text: #06201c;       /* dark text on the bright buttons */
+  --border: #2c3b37;            /* thin dark lines */
+  color-scheme: dark;           /* makes dropdown menus dark too */
+}
+
+
+/* ---------- 2. THE WHOLE PAGE ---------- */
+
+/* Make width/height include padding and border.
+   This avoids many sizing surprises. */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;                              /* remove the default gap */
+  background: var(--page-background);
+  color: var(--text-color);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;                       /* space between lines of text */
+}
+
+
+/* ---------- 3. THE MAIN BOX ---------- */
+.container {
+  max-width: 600px;     /* never wider than 600px */
+  margin: 0 auto;       /* "auto" on the sides centres the box */
+  padding: 30px 20px;   /* space inside the box */
+}
+
+
+/* ---------- 4. HEADINGS ---------- */
+h1 {
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-top: 0;
+}
+
+
+/* ---------- 5. SECTIONS ---------- */
+/* Each <section> gets a line above it and space around it. */
+section {
+  border-top: 1px solid var(--border);
+  padding: 20px 0;
+}
+
+
+/* ---------- 6. STATUS MESSAGE ---------- */
+#status {
+  color: var(--soft-text);
+}
+
+/* Hide the message box when it has no text in it */
+#status:empty {
+  display: none;
+}
+
+
+/* ---------- 7. INPUTS AND DROPDOWNS ---------- */
+label {
+  font-weight: bold;
+  color: var(--soft-text);
+}
+
+input,
+select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;       /* rounded corners */
+  background: var(--box-background);
+  color: var(--text-color);
+}
+
+/* Highlight whichever field you are typing in */
+input:focus,
+select:focus,
+button:focus {
+  outline: 3px solid #fbbf24;   /* yellow outline = easy to see */
+}
+
+
+/* ---------- 8. THE ADD EXPENSE FORM ---------- */
+/* Stack each field on its own line, full width */
+#expense-form input,
+#expense-form select,
+#expense-form button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+
+/* ---------- 9. BUTTONS ---------- */
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--button-text);
+  background: var(--accent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;          /* shows the hand icon on hover */
+}
+
+/* Lighter teal when the mouse is over a button */
+button:hover {
+  background: #7ad7cb;
+}
+
+
+/* ---------- 10. THE EXPENSE LIST ---------- */
+#expense-list {
+  list-style: none;         /* remove the bullet points */
+  padding: 0;
+  margin: 15px 0;
+  background: var(--box-background);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+/* Every item (<li>) in the list */
+#expense-list li {
+  display: flex;                      /* put the two parts side by side */
+  justify-content: space-between;     /* one on the left, one on the right */
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* The last item doesn't need a line under it */
+#expense-list li:last-child {
+  border-bottom: none;
+}
+
+
+/* ---------- 11. THE TOTAL ---------- */
+#total-amount {
+  font-size: 2.5rem;        /* make the number big */
+  font-weight: bold;
+}
+
+#total-currency {
+  color: var(--accent);
+  font-weight: bold;
+}
