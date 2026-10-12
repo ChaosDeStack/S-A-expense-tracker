@@ -37,7 +37,7 @@ async function loadRates() {
   try {
     rates = await fetchRates(homeCurrencySelect.value);
     showStatus("");
-  } catch (error) {
+  } catch {
     rates = null;
     showStatus("Could not load exchange rates. Check your connection and try again.", true);
   }
