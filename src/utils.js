@@ -26,3 +26,9 @@ export function filterByCurrency(expenses, currency) {
   if (!currency || currency === "All") return expenses;
   return expenses.filter((expense) => expense.currency === currency);
 }
+// Newest first. [...expenses] copies the array so the original isn't changed.
+export function sortByDateDesc(expenses) {
+  return [...expenses].sort(
+    (a, b) => b.date.localeCompare(a.date) || b.id - a.id
+  );
+}
