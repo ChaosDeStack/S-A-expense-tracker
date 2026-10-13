@@ -1,6 +1,6 @@
 import { fetchRates } from "./api.js";
 import { addExpense, deleteExpense, getExpenses } from "./state.js";
-import { calculateTotal, filterByCategory, filterByCurrency } from "./utils.js";
+import { calculateTotal, filterByCategory, filterByCurrency, sortByDateDesc } from "./utils.js";
 import { renderExpenses, renderTotal, showStatus } from "./ui.js";
 
 const form = document.getElementById("expense-form");
@@ -8,8 +8,14 @@ const homeCurrencySelect = document.getElementById("home-currency");
 const filterCategorySelect = document.getElementById("filter-category");
 const filterCurrencySelect = document.getElementById("filter-currency");
 const filterButton = document.getElementById("filter-button");
+const dateInput = document.getElementById("date");
 
 let rates = null; // filled in once the API responds
+
+// Local date as YYYY-MM-DD ("en-CA" gives that format)
+function setToday() {
+  dateInput.value = new Date().toLocaleDateString("en-CA");
+}
 
 // Redraw the list and the total from the current data
 function refresh() {
@@ -20,7 +26,7 @@ function refresh() {
     filterCurrencySelect.value
   );
 
-  renderExpenses(visible, homeCurrency, rates, handleDelete);
+  renderExpenses(sortByDateDesc(visible), homeCurrency, rates, handleDelete);
 
   const total = rates ? calculateTotal(visible, homeCurrency, rates) : 0;
   renderTotal(total, homeCurrency);
@@ -51,16 +57,19 @@ form.addEventListener("submit", (event) => {
     id: Date.now(),
     description: document.getElementById("description").value.trim(),
     amount: Number(document.getElementById("amount").value),
+    date: dateInput.value,
     currency: document.getElementById("currency").value,
     category: document.getElementById("category").value,
   };
 
   addExpense(newExpense);
   form.reset();
+  setToday(); // reset() clears the date box, so put today's date back
   refresh();
 });
 
 homeCurrencySelect.addEventListener("change", loadRates);
 filterButton.addEventListener("click", refresh);
 
+setToday();
 loadRates();
