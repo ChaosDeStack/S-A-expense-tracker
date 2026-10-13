@@ -1,3 +1,4 @@
+Authors: Andy and Solomon
 # Expense Tracker with Live Currency Conversion
 
 People who travel, freelance internationally, or shop from foreign stores often lose track of their spending because every purchase is in a different currency. This app lets you log each expense in the currency you actually paid in, and instantly see everything converted into one home currency you understand, using live exchange rates from a REST API.
